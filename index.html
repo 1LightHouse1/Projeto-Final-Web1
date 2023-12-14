@@ -4,20 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
 </head>
 <body>
     <header>
-        <nav class="navbar bg-body-tertiary">
+        <nav class="navbar bg-body-tertiary" id="nav">
             <div class="container-fluid d-flex justify-content-center align-items-center">
               <a class="navbar-brand" href="#">Card-Memes</a>
             </div>
           </nav>
     </header>
 
-    <section class="m-3">
+    <main id="principal">
+      <div class="container mt-2">
+        <div class="row">
+          <div class="botoes-cadastro col-12">
+            <button id="show-form-btn" class="btn btn-primary">Cadastrar</button>
+          </div>
+          <div class="cards">
 
-    </section>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="container">
+      <div class="row">
+        <div id="overlay">
+          <div id="form-container">
+            <h2 class="mb-4">Cadastro de Viagem</h2>
+            <form>
+              <div class="form-group">
+                <label for="titulo">Título da Viagem:</label>
+                <input type="text" class="form-control" id="titulo" name="titulo" required>
+              </div>
+        
+              <div class="form-group">
+                <label for="local">Local:</label>
+                <select class="form-control" id="local" name="local" required>
+                  <option value="praia">Praia</option>
+                  <option value="montanha">Montanha</option>
+                  <option value="cidade">Cidade</option>
+                </select>
+              </div>
+        
+              <div class="form-group">
+                <label for="cidade">Cidade:</label>
+                <input type="text" class="form-control" id="cidade" name="cidade" required>
+              </div>
+        
+              <div class="form-group">
+                <label for="descricao">Descrição:</label>
+                <textarea class="form-control" id="descricao" name="descricao" rows="4" required></textarea>
+              </div>
+        
+              <div class="form-group">
+                <label for="nota">Nota:</label>
+                <input type="number" class="form-control" id="nota" name="nota" min="1" max="10" required>
+              </div>
+        
+              <button type="submit" class="btn btn-success">Enviar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <footer class="bg-body-tertiary text-center">
         <!-- Copyright -->
@@ -31,6 +84,6 @@
     </footer>
     
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
+<script src="./script.js"></script>
 </body>
 </html>

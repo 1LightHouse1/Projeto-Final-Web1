@@ -56,3 +56,8 @@ main{
     border: none;
     border-radius: 5px;
 }
+
+#close-form-btn{
+    background-color: red;
+    border: none;
+}

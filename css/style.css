@@ -88,10 +88,11 @@ main{
 }
 
 .cards{
+    visibility: hidden;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     padding: 20px;
@@ -150,5 +151,7 @@ main{
 
 @media (max-width: 488px) {
 
-
+    .cards{
+        justify-content: center;
+    }
 }

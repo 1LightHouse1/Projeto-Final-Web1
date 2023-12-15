@@ -7,6 +7,7 @@ const options = {
 	}
 };
 
+let main = document.getElementById("principal");
 let result2 = "";
 const selectElement = document.getElementById('local');
 let divContainer = document.querySelector(".cards");
@@ -57,7 +58,6 @@ document.getElementById('close-form-btn').addEventListener('click', function(){
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (this.local.value === "Selecione um país") {
-        //Tp, eu não sei pqq não tá pegando os cards lá em cima, sendo que eu criei um ID pros cards
         window.alert("SELECIONE ALGUM PAÍS");
         return
     }
@@ -76,13 +76,17 @@ form.addEventListener('submit', (e) => {
 });
 
 window.addEventListener('load', () =>{
+
+    let container = document.querySelector(".cards");
     if (localStorage.length > 0) {
         listaViagens = JSON.parse(localStorage.getItem('viagens'));
     }
     
-    if(listaViagens != null){
+    if(listaViagens != null && listaViagens.length != 0) {
+        console.log(listaViagens.length);
         criarCards(listaViagens);
-    }
+        container.style.visibility = "visible";
+    }else container.style.visibility = "hidden";
 
     cardButtons = document.querySelectorAll(".btn-delete");
     adicionarListeners(cardButtons);
@@ -110,6 +114,13 @@ function criarCards(listaViagensJSON) {
         `;
         container.innerHTML += card;
     });
+    console.log(main.offsetHeight);
+    console.log(container.offsetHeight);
+    if (main.offsetHeight < container.offsetHeight) {
+
+        main.style.height = (container.offsetHeight+100)+"px";
+        console.log("CHEGOU AQ MAS NÃO DEU DOGÃOKKKKKKKKK");
+    }
 }
 
 

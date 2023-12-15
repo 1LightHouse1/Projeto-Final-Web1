@@ -19,7 +19,7 @@ async function fetchData() {
     try {
         const response = await fetch(url, options);
         const result = await response.json();
-        result2 = sortStrings(result);
+        result2 = quickSort(result);
         console.log(result2);
 
         updateSelect();
@@ -127,21 +127,23 @@ function adicionarListeners(params) {
     }
 }
 
-
-function sortStrings(arr) {
-        let temp;
-
-        // Sorting strings using bubble sort
-        for (let j = 0; j < arr.length - 1; j++) {
-            for (let i = j + 1; i < arr.length; i++) {
-                if (arr[j].value.localeCompare(arr[i].value) > 0) {
-                    temp = arr[j];
-                    arr[j] = arr[i];
-                    arr[i] = temp;
-                }
-
-            }
-        }
-        return arr;
-}
-
+function quickSort(arr){
+    if (arr.length <= 1) {
+      return arr;
+    }
+  
+    let pivot = arr[0];
+    let leftArr = [];
+    let rightArr = [];
+  
+    for (let i = 1; i < arr.length; i++) {
+      if (arr[i].value.localeCompare(pivot.value) < 0) {
+        leftArr.push(arr[i]);
+      } else {
+        rightArr.push(arr[i]);
+      }
+    }
+  
+    return [...quickSort(leftArr), pivot, ...quickSort(rightArr)];
+  };
+  

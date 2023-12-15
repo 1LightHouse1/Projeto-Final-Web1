@@ -83,23 +83,7 @@ window.addEventListener('load', () =>{
     }
 
     cardButtons = document.querySelectorAll(".btn-delete");
-
-    for (let index = 0; index < cardButtons.length; index++) {
-        console.log("TÁ ADICIONANDO LEGAL DOGÃOKKKKKKKKKKKK");
-        
-        cardButtons[index].addEventListener('click',() =>{
-
-            if (confirm("Deseja mesmo deletar esta viagem?")) {
-                listaViagens.splice(index, 1);
-                localStorage.clear();
-                localStorage.setItem('viagens',JSON.stringify(listaViagens));
-                location.reload();
-            }else{
-                return;
-            }
-
-        });
-    }
+    adicionarListeners(cardButtons);
 })
 
 function criarCards(listaViagensJSON) {
@@ -122,5 +106,22 @@ function criarCards(listaViagensJSON) {
 }
 
 
+function adicionarListeners(params) {
+    for (let index = 0; index < params.length; index++) {
+        console.log("TÁ ADICIONANDO LEGAL DOGÃOKKKKKKKKKKKK");
+        
+        params[index].addEventListener('click',() =>{
 
+            if (confirm("Deseja mesmo deletar esta viagem?")) {
+                listaViagens.splice(index, 1);
+                localStorage.clear();
+                localStorage.setItem('viagens',JSON.stringify(listaViagens));
+                location.reload();
+            }else{
+                return;
+            }
+
+        });
+    }
+}
 

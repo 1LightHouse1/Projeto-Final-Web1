@@ -32,12 +32,13 @@ function updateSelect() {
     const defaultOption = document.createElement('option');
     defaultOption.text = 'Selecione um país';
     selectElement.add(defaultOption, 0);
-
+    
     result2.forEach(country => {
         const option = document.createElement('option');
         option.text = country.value;
         selectElement.add(option);
     });
+
 }
 
 fetchData();
@@ -90,20 +91,26 @@ function criarCards(listaViagensJSON) {
     let container = document.querySelector(".cards");
     listaViagensJSON.forEach(viagem => {
         let card = `
-        <div class="card-body">
-            <h5 class="card-title" id="card-titulo">${viagem.tituloViagem}</h5>
-            <p class="card-text" id="card-local">${viagem.Local}</p>
-            <p class="card-text" id="card-cidade">${viagem.Cidade}</p>
-            <p class="card-text" id="card-descricao">${viagem.Descricao}</p>
-            <p class="card-text" id="card-nota">${viagem.nota}</p>
-            <div class="card-footer">
-                <button class="btn-delete">Excluir</button>
+        <div class="card">
+            <div class="card-body">
+                <div class="titulo">
+                    <h5 class="card-title">${viagem.tituloViagem}</h5>
+                </div>
+                <div>
+                    <p class="card-text">Pais de destino: ${viagem.Local}.</p>
+                    <p class="card-text">Cidade: ${viagem.Cidade}.</p>
+                    <p class="card-text">Descrição: ${viagem.Descricao}.</p>
+                    <p class="card-text">Nota da viagem: ${viagem.nota}.</p>
+                </div>
+                <a href="#" class="btn btn-primary btn-delete">Excluir</a>
             </div>
         </div>
         `;
         container.innerHTML += card;
     });
 }
+
+
 
 
 function adicionarListeners(params) {

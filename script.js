@@ -66,6 +66,7 @@ form.addEventListener('submit', (e) => {
     listaViagens.push(viagem)
     
     localStorage.setItem('viagens',JSON.stringify(listaViagens));
+    location.reload();
 });
 
 window.addEventListener('load', () =>{

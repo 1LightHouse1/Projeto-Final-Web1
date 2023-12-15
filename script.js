@@ -2,7 +2,7 @@ const url = 'https://referential.p.rapidapi.com/v1/country?fields=currency%2Ccur
 const options = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': 'chave',
+		'X-RapidAPI-Key': 'a6f3d1fffcmshfe00ea9395d581fp13ba85jsncf8248095449',
 		'X-RapidAPI-Host': 'referential.p.rapidapi.com'
 	}
 };
@@ -13,6 +13,7 @@ let divContainer = document.querySelector(".cards");
 
 var listaViagens = [];
 let form = document.forms["cadastroDeViagem"];
+let cardButtons;
 
 async function fetchData() {
     try {
@@ -54,10 +55,13 @@ document.getElementById('close-form-btn').addEventListener('click', function(){
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (this.local.value === "Selecione um país") {
+        //Tp, eu não sei pqq não tá pegando os cards lá em cima, sendo que eu criei um ID pros cards
         window.alert("SELECIONE ALGUM PAÍS");
+        return
     }
     let viagem = {
         "id": listaViagens.length + 1,
+        "tituloViagem": this.titulo.value,
         "Local": this.local.value,
         "Cidade": this.cidade.value,
         "Descricao": this.descricao.value,
@@ -70,10 +74,26 @@ form.addEventListener('submit', (e) => {
 });
 
 window.addEventListener('load', () =>{
-    listaViagens = JSON.parse(localStorage.getItem('viagens'));
-
-    if(listaViagens!= null){
+    if (localStorage.length > 0) {
+        listaViagens = JSON.parse(localStorage.getItem('viagens'));
+    }
+    
+    if(listaViagens != null){
         criarCards(listaViagens);
+    }
+
+    cardButtons = document.querySelectorAll(".btn-delete");
+
+    for (let index = 0; index < cardButtons.length; index++) {
+        console.log("TÁ ADICIONANDO LEGAL DOGÃOKKKKKKKKKKKK");
+        
+        cardButtons[index].addEventListener('click',() =>{
+            listaViagens.splice(index, 1);
+            window.alert("DELETADÍSSIMO!!!");
+            localStorage.clear();
+            localStorage.setItem('viagens',JSON.stringify(listaViagens));
+            location.reload();
+        });
     }
 })
 
@@ -82,23 +102,20 @@ function criarCards(listaViagensJSON) {
     listaViagensJSON.forEach(viagem => {
         let card = `
         <div class="card-body">
-            <h5 class="card-title">${viagem.Local}</h5>
+            <h5 class="card-title">${viagem.tituloViagem}</h5>
+            <p class="card-text">${viagem.Local}</p>
             <p class="card-text">${viagem.Cidade}</p>
             <p class="card-text">${viagem.Descricao}</p>
             <p class="card-text">${viagem.nota}</p>
-        </div>
-        <div class="card-footer">
-            <a href="#" class="btn btn-primary">Editar</a>
-            <a href="#" class="btn btn-danger">Excluir</a>
+            <div class="card-footer">
+                <button class="btn-delete">Excluir</button>
+            </div>
         </div>
         `;
         container.innerHTML += card;
     });
 }
 
-function deletarCard(){
-    
-}
 
 
 

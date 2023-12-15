@@ -88,11 +88,16 @@ window.addEventListener('load', () =>{
         console.log("TÁ ADICIONANDO LEGAL DOGÃOKKKKKKKKKKKK");
         
         cardButtons[index].addEventListener('click',() =>{
-            listaViagens.splice(index, 1);
-            window.alert("DELETADÍSSIMO!!!");
-            localStorage.clear();
-            localStorage.setItem('viagens',JSON.stringify(listaViagens));
-            location.reload();
+
+            if (confirm("Deseja mesmo deletar esta viagem?")) {
+                listaViagens.splice(index, 1);
+                localStorage.clear();
+                localStorage.setItem('viagens',JSON.stringify(listaViagens));
+                location.reload();
+            }else{
+                return;
+            }
+
         });
     }
 })
@@ -102,11 +107,11 @@ function criarCards(listaViagensJSON) {
     listaViagensJSON.forEach(viagem => {
         let card = `
         <div class="card-body">
-            <h5 class="card-title">${viagem.tituloViagem}</h5>
-            <p class="card-text">${viagem.Local}</p>
-            <p class="card-text">${viagem.Cidade}</p>
-            <p class="card-text">${viagem.Descricao}</p>
-            <p class="card-text">${viagem.nota}</p>
+            <h5 class="card-title" id="card-titulo">${viagem.tituloViagem}</h5>
+            <p class="card-text" id="card-local">${viagem.Local}</p>
+            <p class="card-text" id="card-cidade">${viagem.Cidade}</p>
+            <p class="card-text" id="card-descricao">${viagem.Descricao}</p>
+            <p class="card-text" id="card-nota">${viagem.nota}</p>
             <div class="card-footer">
                 <button class="btn-delete">Excluir</button>
             </div>

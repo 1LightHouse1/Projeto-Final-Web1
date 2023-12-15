@@ -2,7 +2,7 @@ const url = 'https://referential.p.rapidapi.com/v1/country?fields=currency%2Ccur
 const options = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': 'a6f3d1fffcmshfe00ea9395d581fp13ba85jsncf8248095449',
+		'X-RapidAPI-Key': 'chave',
 		'X-RapidAPI-Host': 'referential.p.rapidapi.com'
 	}
 };

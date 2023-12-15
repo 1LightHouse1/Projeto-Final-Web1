@@ -92,7 +92,7 @@ function criarCards(listaViagensJSON) {
             <a href="#" class="btn btn-danger">Excluir</a>
         </div>
         `;
-        divContainer.innerHTML += card;
+        container.innerHTML += card;
     });
 }
 
